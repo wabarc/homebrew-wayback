@@ -1,0 +1,47 @@
+name: Publish
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [publish]
+
+jobs:
+  validate:
+    name: Validate
+    env:
+      GITHUB_REPOSITORY: wabarc/homebrew-wayback
+    strategy:
+      matrix:
+        os:
+          - macos-10.15
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Brew wayback
+        run: |
+          brew tap wabarc/homebrew-wayback
+          brew install wayback
+          wayback --help
+
+  publish:
+    name: Publish
+    needs: [validate]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code base
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GH_PAT }}
+          repository: 'wabarc/homebrew-wayback'
+
+      - name: Update Homebrew manifest
+        run: |
+          make manifest
+
+      - name: Publish Homebrew Repository
+        run: |
+          git config --local user.name 'github-actions[bot]'
+          git config --local user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          make publish
