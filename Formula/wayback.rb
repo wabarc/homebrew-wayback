@@ -2,13 +2,13 @@ class Wayback < Formula
   desc "A toolkit for snapshot webpage to Internet Archive, archive.today, IPFS and beyond"
   homepage "https://github.com/wabarc"
   if Hardware::CPU.intel?
-    url "https://github.com/wabarc/wayback/releases/download/v0.12.0/wayback-darwin-amd64-0.12.0.tar.gz"
-    sha256 "d26f181c9b961260a2e73c4b18e9ccb2b125a17a363855c33902ec1c56a0e4c6" # Intel
+    url "https://github.com/wabarc/wayback/releases/download/v0.12.1/wayback-darwin-amd64-0.12.1.tar.gz"
+    sha256 "f563e3a8d9b4de76df8364cec4bbf61c8e4bffcc98bd2cac3ced168e57d480bd" # Intel
   else
-    url "https://github.com/wabarc/wayback/releases/download/v0.12.0/wayback-darwin-arm64-0.12.0.tar.gz"
-    sha256 "ff1486f9d5569f9ea804fbd39286f1616822552b98a73fbe210d87424e7d5a07" # Apple Silicon
+    url "https://github.com/wabarc/wayback/releases/download/v0.12.1/wayback-darwin-arm64-0.12.1.tar.gz"
+    sha256 "92d1b13f326e73f44b2e5297d04235d90e5ceb7803d6fda0123fcd49bc642758" # Apple Silicon
   end
-  version "0.12.0"
+  version "0.12.1"
   license "GPL-3.0"
 
   def install
