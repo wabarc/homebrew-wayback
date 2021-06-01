@@ -18,12 +18,14 @@ RUN set -eu pipefail && \
     ln -s ~/.linuxbrew/Homebrew/bin/brew ~/.local/bin && \
     eval $(~/.linuxbrew/bin/brew shellenv)
 
-WORKDIR /brew-repo
+WORKDIR /home/homebrew/.linuxbrew/Homebrew/Library/Taps/wabarc/homebrew-wayback
 
 COPY . .
 
 USER root
 RUN set -eu pipefail && \
-    mkdir -p /home/homebrew/.linuxbrew/Homebrew/Library/Taps/wabarc/ && \
-    cp -r /brew-repo /home/homebrew/.linuxbrew/Homebrew/Library/Taps/wabarc/homebrew-wayback && \
     chown -R homebrew:homebrew /home/homebrew/.linuxbrew/Homebrew/Library/Taps/
+
+USER homebrew
+
+ENTRYPOINT ["/bin/bash", "entrypoint.sh"]

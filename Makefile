@@ -9,7 +9,7 @@ all: manifest build
 .PHONY: build
 build:
 	$(DOCKER) build -t brew-builder .
-	$(DOCKER) run --rm -v ${PWD}:/homebrew-wayback brew-builder
+	$(DOCKER) run --rm brew-builder
 
 .PHONY: manifest
 manifest:

@@ -19,10 +19,15 @@ jobs:
       - name: Set up Homebrew
         uses: Homebrew/actions/setup-homebrew@master
 
+      - name: Homebrew manifest
+        run: |
+          make manifest
+
       - name: Brew wayback
         run: |
           brew tap wabarc/homebrew-wayback
           brew install wayback
+          wayback --version
           wayback --help
 
   publish:
