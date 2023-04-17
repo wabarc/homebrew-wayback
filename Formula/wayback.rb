@@ -12,7 +12,11 @@ class Wayback < Formula
   license "GPL-3.0"
 
   def install
-    bin.install "wayback-darwin-amd64" => "wayback"
+    if Hardware::CPU.intel?
+      bin.install "wayback-darwin-amd64" => "wayback"
+    else
+      bin.install "wayback-darwin-arm64" => "wayback"
+    end
   end
 
   livecheck do
