@@ -16,6 +16,7 @@ class Wayback < Formula
       bin.install "wayback-darwin-amd64" => "wayback"
     else
       bin.install "wayback-darwin-arm64" => "wayback"
+    end
   end
 
   livecheck do
